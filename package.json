@@ -1,0 +1,14 @@
+{
+  "name": "csgo-profiler",
+  "version": "0.4.2",
+  "author": "Salies",
+  "repository": "salies/csgo-profiler",
+  "license": "MIT",
+  "description": "A simple and dynamic Steam/CS:GO data retriever.",
+  "dependencies": {
+    "async": "github:caolan/async",
+    "express": "github:expressjs/express",
+    "pug": "pugjs/pug",
+    "request": "request/request"
+  }
+}
