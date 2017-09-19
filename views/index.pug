@@ -5,7 +5,7 @@ html
     title!='CS:GO Profiler'
     script(src='https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js')
     link(rel='stylesheet', type="text/css", href='https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css')
-    link(rel='stylesheet', type="text/css", href='assets/styles2.css')
+    link(rel='stylesheet', type="text/css", href='your_assets_directory/.css')
     link(href="https://fonts.googleapis.com/css?family=Patua+One|Roboto+Mono|Roboto+Slab" rel="stylesheet")
     link(rel='stylesheet', href='https://cdnjs.cloudflare.com/ajax/libs/jquery.perfect-scrollbar/0.8.1/css/perfect-scrollbar.min.css')
     script(src='https://cdnjs.cloudflare.com/ajax/libs/jquery.perfect-scrollbar/0.8.1/js/perfect-scrollbar.min.js')
@@ -13,12 +13,12 @@ html
   body
     header
       div
-        a(href='/' style='color:#fff;text-decoration:none;')
+        a(href= prefix style='color:#fff;text-decoration:none;')
           section.logo
-            img(src='assets/logo.png')
+            img(src='your_assets_directory/csgo/logo.png')
             span!='CS:GO Profiler'
         section.nav
-          a(href='#' target='_blank' style='color:#fff;text-decoration:none;')
+          a(href= prefix style='color:#fff;text-decoration:none;')
             div.menuitem!='Home'
           a(href='https://github.com/Salies/csgo-profiler' target='_blank' style='color:#fff;text-decoration:none;')
             div.menuitem!='Source'
@@ -33,21 +33,21 @@ html
           function init(ival){
             if(ival.startsWith("http://steamcommunity.com/profiles/")===true || ival.startsWith("https://steamcommunity.com/profiles/")===true){
               let fval = (ival.split("profiles/").pop()).replace('/','');
-              window.location.replace(`/${fval}`);
+              window.location.replace(`#{prefix}/${fval}`);
             }
             else if(ival.startsWith("http://steamcommunity.com/id/")===true || ival.startsWith("https://steamcommunity.com/id/")===true){
               let fval = (ival.split("id/").pop()).replace('/','');
-              window.location.replace(`/${fval}`);
+              window.location.replace(`#{prefix}/${fval}`);
             }
             else if(ival.startsWith("http://")===true || ival.startsWith("https://")===true){
-              window.location.replace('/')
+              window.location.replace('#{prefix}')
             }
             else if(ival.includes('/')===true){
               let fval = ival.replace('/','');
-              window.location.replace(`/${fval}`);
+              window.location.replace(`#{prefix}/${fval}`);
             }
             else{
-              window.location.replace(`/${ival}`);
+              window.location.replace(`#{prefix}/${ival}`);
             }
           }
       footer(style='position:absolute;bottom:0')!=made
