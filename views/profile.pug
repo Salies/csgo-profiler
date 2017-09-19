@@ -5,7 +5,7 @@ html
     title!='CS:GO Profiler - ' + name
     script(src='https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js')
     link(rel='stylesheet', type="text/css", href='https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css')
-    link(rel='stylesheet', type="text/css", href='assets/styles2.css')
+    link(rel='stylesheet', type="text/css", href='your_assets_directory/styles.css')
     link(href="https://fonts.googleapis.com/css?family=Patua+One|Roboto+Mono|Roboto+Slab" rel="stylesheet")
     link(rel='stylesheet', href='https://cdnjs.cloudflare.com/ajax/libs/jquery.perfect-scrollbar/0.8.1/css/perfect-scrollbar.min.css')
     script(src='https://cdnjs.cloudflare.com/ajax/libs/jquery.perfect-scrollbar/0.8.1/js/perfect-scrollbar.min.js')
@@ -13,12 +13,12 @@ html
   body
     header
       div
-        a(href='/' style='color:#fff;text-decoration:none;')
+        a(href= prefix style='color:#fff;text-decoration:none;')
           section.logo
-            img(src='assets/logo.png')
+            img(src='your_assets_directory/logo.png')
             span!='CS:GO Profiler'
         section.nav
-          a(href='#' target='_blank' style='color:#fff;text-decoration:none;')
+          a(href= prefix style='color:#fff;text-decoration:none;')
             div.menuitem!='Home'
           a(href='https://github.com/Salies/csgo-profiler' target='_blank' style='color:#fff;text-decoration:none;')
             div.menuitem!='Source'
@@ -32,21 +32,21 @@ html
           function init(ival){
             if(ival.startsWith("http://steamcommunity.com/profiles/")===true || ival.startsWith("https://steamcommunity.com/profiles/")===true){
               let fval = (ival.split("profiles/").pop()).replace('/','');
-              window.location.replace(`/${fval}`);
+              window.location.replace(`#{prefix}/${fval}`);
             }
             else if(ival.startsWith("http://steamcommunity.com/id/")===true || ival.startsWith("https://steamcommunity.com/id/")===true){
               let fval = (ival.split("id/").pop()).replace('/','');
-              window.location.replace(`/${fval}`);
+              window.location.replace(`#{prefix}/${fval}`);
             }
             else if(ival.startsWith("http://")===true || ival.startsWith("https://")===true){
-              window.location.replace('/')
+              window.location.replace('#{prefix}')
             }
             else if(ival.includes('/')===true){
               let fval = ival.replace('/','');
-              window.location.replace(`/${fval}`);
+              window.location.replace(`#{prefix}/${fval}`);
             }
             else{
-              window.location.replace(`/${ival}`);
+              window.location.replace(`#{prefix}/${ival}`);
             }
           }
       section.profile
@@ -58,7 +58,7 @@ html
             .realname!=realname
             br
             .country
-              img.flag(src=`assets/flags/${countrycode.toLowerCase()}.svg`)
+              img.flag(src=`your_assets_directory/flags/${countrycode.toLowerCase()}.svg`)
               div!=country
         div(style='text-align:right;')
           .status!=status
@@ -71,39 +71,39 @@ html
           | K.D. Ratio
         section.group
           .item.margin
-            img(src='assets/icons/kills.png')
+            img(src='your_assets_directory/icons/kills.png')
             .number.kills!=kills
             .att kills
           .item
-            img(src='assets/icons/death.png')
+            img(src='your_assets_directory/icons/death.png')
             .number.deaths!=deaths
             br
             .att deaths
         section.group
           .item.margin
-            img(src='assets/icons/time.png')
+            img(src='your_assets_directory/icons/time.png')
             .number.time!=time
             .att(style='font-size: 9.8px;') hours played
           .item
-            img(src='assets/icons/mvps.png')
+            img(src='your_assets_directory/icons/mvps.png')
             .number.mvp!=mvps
             .att MVPs
         section.group
           .item.margin
-            img(src='assets/icons/planted.png')
+            img(src='your_assets_directory/icons/planted.png')
             .number.planted!=planted
             .att planted bombs
           .item
-            img(src='assets/icons/defused.png')
+            img(src='your_assets_directory/icons/defused.png')
             .number.defused!=defused
             .att defused bombs
         section.group
           .item.margin
-            img(src='assets/icons/hs.png')
+            img(src='your_assets_directory/icons/hs.png')
             .number.hs!=headshots
             .att headshots
           .item
-            img(src='assets/icons/won.png')
+            img(src='your_assets_directory/icons/won.png')
             .number.matches!=pm
             .att of matches won
       .mob_stats
@@ -114,45 +114,45 @@ html
         br
         .mob_group
           .mob_item
-            img(src='assets/icons/kills.png', style='float:left')
+            img(src='your_assets_directory/icons/kills.png', style='float:left')
             div(style='float:left')!=kills
             br
             span(style='float:left') kills
           .mob_item
-            img(src='assets/icons/death.png', style='float:left')
+            img(src='your_assets_directory/icons/death.png', style='float:left')
             div(style='float:left')!=deaths
             br
             span(style='float:left') deaths
         .mob_group
           .mob_item
-            img(src='assets/icons/time.png', style='float:left')
+            img(src='your_assets_directory/icons/time.png', style='float:left')
             div(style='float:left;min-width: 74px;')!=time
             br
             span(style='float:left') hours played
           .mob_item
-            img(src='assets/icons/mvps.png', style='float:left')
+            img(src='your_assets_directory/icons/mvps.png', style='float:left')
             div(style='float:left')!=mvps
             br
             span(style='float:left') MVPs
         .mob_group
           .mob_item
-            img(src='assets/icons/planted.png', style='float:left')
+            img(src='your_assets_directory/icons/planted.png', style='float:left')
             div(style='float:left;min-width: 85px;')!=planted
             br
             span(style='float:left') planted bombs
           .mob_item
-            img(src='assets/icons/defused.png', style='float:left')
+            img(src='your_assets_directory/icons/defused.png', style='float:left')
             div(style='float:left;min-width: 87px;')!=defused
             br
             span(style='float:left') defused bombs
         .mob_group
           .mob_item
-            img(src='assets/icons/hs.png', style='float:left')
+            img(src='your_assets_directory/icons/hs.png', style='float:left')
             div(style='float:left;min-width: 59px;')!=headshots
             br
             span(style='float:left') headshots
           .mob_item
-            img(src='assets/icons/won.png', style='float:left')
+            img(src='your_assets_directory/icons/won.png', style='float:left')
             div(style='float:left;min-width: 91px;')!=pm
             br
             span(style='float:left') of matches won
