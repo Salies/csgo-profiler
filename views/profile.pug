@@ -58,7 +58,7 @@ html
             .realname!=realname
             br
             .country
-              img.flag(src=`your_assets_directory/flags/${countrycode.toLowerCase()}.svg`)
+              img.flag(src=`your_assets_directory/flags/${String(countrycode).toLowerCase()}.svg`)
               div!=country
         div(style='text-align:right;')
           .status!=status
