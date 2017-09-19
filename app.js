@@ -213,11 +213,16 @@ app.get('/:input', (req, res) => {
                                 maps
                             ];
 
-                            if (prestats.includes(undefined) === true) {
-                                morre("This player doesn't have enough info to be fully profiled.")
-                            } else {
+                            let cont = true;
 
+                            for(let i=0;i<prestats.length;i++){
+                                if(prestats[i]==undefined){
+                                    cont = false;
+                                }
+                            }
 
+                            if(cont===true){
+                                console.log(cont);
                                 //One single master array, the unification of the great and small. I hear the notes but the arrangement is wrong, and I'm starting to doubt, but I can't give up now...
                                 var stats = {
                                     kills: p[p.findIndex(item => item.name === 'total_kills')].value,
@@ -235,6 +240,9 @@ app.get('/:input', (req, res) => {
                                 }
 
                                 callback(null, stats);
+                            }
+                            else{
+                                morre("This player doesn't have enough info to be fully profiled.");
                             }
                         }
                     }
