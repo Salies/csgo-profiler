@@ -8,23 +8,26 @@ var app = express()
 
 app.set('view engine', 'pug')
 
-var key = "key_here";
+var key = "your_key_here";
+var prefix = '/csgo'; //the subdirectory where your app will run - leve this blank if you want to make the app your homepage.
 
-app.get('/', function(req, res) {
+app.get(prefix, function(req, res) {
     res.render('index', {
         enter: "Enter a SteamID64, Custom URL or Steam Profile URL.",
-        made: 'Made with <a href="https://www.youtube.com/watch?v=VRyX-lEGbfQ" style="color:#fff;text-decoration:none" target="_blank"> ❤ </a> by <a href="https://github.com/salies" style="color:#fff;text-decoration:none" target="_blank">Salies</a>.<a class="github-button" href="https://github.com/salies/csgo-profiler" data-icon="octicon-star" data-size="large" data-show-count="true" aria-label="Star salies/csgo-profiler on GitHub">Star</a>'
+        made: 'Made with <a href="https://www.youtube.com/watch?v=VRyX-lEGbfQ" style="color:#fff;text-decoration:none" target="_blank"> ❤ </a> by <a href="https://github.com/salies" style="color:#fff;text-decoration:none" target="_blank">Salies</a>.<a class="github-button" href="https://github.com/salies/csgo-profiler" data-icon="octicon-star" data-size="large" data-show-count="true" aria-label="Star salies/csgo-profiler on GitHub">Star</a>',
+        prefix:prefix
     });
 });
 
-app.get('/:input', (req, res) => {
+app.get(`${prefix}/:input`, (req, res) => {
 
     let raw = req.params.input;
 
     function morre(param) {
         res.render('error', {
             message: param,
-            made: 'Made with <a href="https://www.youtube.com/watch?v=VRyX-lEGbfQ" style="color:#fff;text-decoration:none" target="_blank"> ❤ </a> by <a href="https://github.com/salies" style="color:#fff;text-decoration:none" target="_blank">Salies</a>.<a class="github-button" href="https://github.com/salies/csgo-profiler" data-icon="octicon-star" data-size="large" data-show-count="true" aria-label="Star salies/csgo-profiler on GitHub">Star</a>'
+            made: 'Made with <a href="https://www.youtube.com/watch?v=VRyX-lEGbfQ" style="color:#fff;text-decoration:none" target="_blank"> ❤ </a> by <a href="https://github.com/salies" style="color:#fff;text-decoration:none" target="_blank">Salies</a>.<a class="github-button" href="https://github.com/salies/csgo-profiler" data-icon="octicon-star" data-size="large" data-show-count="true" aria-label="Star salies/csgo-profiler on GitHub">Star</a>',
+            prefix:prefix
         });
     }
 
@@ -309,7 +312,8 @@ app.get('/:input', (req, res) => {
                 mvps: cstats.mvps,
                 guns: g,
                 maps: m,
-                bans: b
+                bans: b,
+                prefix:prefix
             }
 
             res.render('profile', render);
