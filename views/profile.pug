@@ -3,24 +3,24 @@ html
     meta(charset="UTF-8")
     meta(name='viewport', content='width=device-width, initial-scale=1.0')
     meta(property='og:url', content='https://csgo-profiler.herokuapp.com/')
-    meta(property='og:title', content='CS:GO Profiler' + name)
+    meta(property='og:title', content='CS:GO Profiler - ' + name)
     meta(property='og:site_name', content='Salies Experiments')
     meta(property='og:description', content='A NodeJS CS:GO data retriever / organizer.')
-    meta(property='og:image', content='https://i.imgur.com/UAJCc5q.png')
+    meta(property='og:image', content=avatar)
     title!='CS:GO Profiler - ' + name
     script(src='https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js')
     link(rel='stylesheet', type="text/css", href='https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css')
-    link(rel='stylesheet', type="text/css", href='your_assets_directory/styles.css')
+    link(rel='stylesheet', type="text/css", href='https://salies.github.io/csgo-profiler/assets/styles.css')
     link(href="https://fonts.googleapis.com/css?family=Patua+One|Roboto+Mono|Roboto+Slab" rel="stylesheet")
     link(rel='stylesheet', href='https://cdnjs.cloudflare.com/ajax/libs/jquery.perfect-scrollbar/0.8.1/css/perfect-scrollbar.min.css')
     script(src='https://cdnjs.cloudflare.com/ajax/libs/jquery.perfect-scrollbar/0.8.1/js/perfect-scrollbar.min.js')
-    link(rel='shortcut icon', type='image/png', href='https://saliesbox.com/favicon.png')
+    link(rel='shortcut icon', type='image/png', href='https://saliesbox.com/exp.png')
   body
     header
       div
         a(href= prefix style='color:#fff;text-decoration:none;')
           section.logo
-            img(src='your_assets_directory/logo.png')
+            img(src='https://salies.github.io/csgo-profiler/assets/logo.png')
             span!='CS:GO Profiler'
         section.nav
           a(href= prefix style='color:#fff;text-decoration:none;')
@@ -63,7 +63,7 @@ html
             .realname!=realname
             br
             .country
-              img.flag(src=`your_assets_directory/flags/${String(countrycode).toLowerCase()}.svg`)
+              img.flag(src=`https://salies.github.io/csgo-profiler/assets/flags/${String(countrycode).toLowerCase()}.svg`)
               div!=country
         div(style='text-align:right;')
           .status!=status
@@ -76,39 +76,39 @@ html
           | K.D. Ratio
         section.group
           .item.margin
-            img(src='your_assets_directory/icons/kills.png')
+            img(src='https://salies.github.io/csgo-profiler/assets/icons/kills.png')
             .number.kills!=kills
             .att kills
           .item
-            img(src='your_assets_directory/icons/death.png')
+            img(src='https://salies.github.io/csgo-profiler/assets/icons/death.png')
             .number.deaths!=deaths
             br
             .att deaths
         section.group
           .item.margin
-            img(src='your_assets_directory/icons/time.png')
+            img(src='https://salies.github.io/csgo-profiler/assets/icons/time.png')
             .number.time!=time
             .att(style='font-size: 9.8px;') hours played
           .item
-            img(src='your_assets_directory/icons/mvps.png')
+            img(src='https://salies.github.io/csgo-profiler/assets/icons/mvps.png')
             .number.mvp!=mvps
             .att MVPs
         section.group
           .item.margin
-            img(src='your_assets_directory/icons/planted.png')
+            img(src='https://salies.github.io/csgo-profiler/assets/icons/planted.png')
             .number.planted!=planted
             .att planted bombs
           .item
-            img(src='your_assets_directory/icons/defused.png')
+            img(src='https://salies.github.io/csgo-profiler/assets/icons/defused.png')
             .number.defused!=defused
             .att defused bombs
         section.group
           .item.margin
-            img(src='your_assets_directory/icons/hs.png')
+            img(src='https://salies.github.io/csgo-profiler/assets/icons/hs.png')
             .number.hs!=headshots
             .att headshots
           .item
-            img(src='your_assets_directory/icons/won.png')
+            img(src='https://salies.github.io/csgo-profiler/assets/icons/won.png')
             .number.matches!=pm
             .att of matches won
       .mob_stats
@@ -119,45 +119,45 @@ html
         br
         .mob_group
           .mob_item
-            img(src='your_assets_directory/icons/kills.png', style='float:left')
+            img(src='https://salies.github.io/csgo-profiler/assets/icons/kills.png', style='float:left')
             div(style='float:left')!=kills
             br
             span(style='float:left') kills
           .mob_item
-            img(src='your_assets_directory/icons/death.png', style='float:left')
+            img(src='https://salies.github.io/csgo-profiler/assets/icons/death.png', style='float:left')
             div(style='float:left')!=deaths
             br
             span(style='float:left') deaths
         .mob_group
           .mob_item
-            img(src='your_assets_directory/icons/time.png', style='float:left')
+            img(src='https://salies.github.io/csgo-profiler/assets/icons/time.png', style='float:left')
             div(style='float:left;min-width: 74px;')!=time
             br
             span(style='float:left') hours played
           .mob_item
-            img(src='your_assets_directory/icons/mvps.png', style='float:left')
+            img(src='https://salies.github.io/csgo-profiler/assets/icons/mvps.png', style='float:left')
             div(style='float:left')!=mvps
             br
             span(style='float:left') MVPs
         .mob_group
           .mob_item
-            img(src='your_assets_directory/icons/planted.png', style='float:left')
+            img(src='https://salies.github.io/csgo-profiler/assets/icons/planted.png', style='float:left')
             div(style='float:left;min-width: 85px;')!=planted
             br
             span(style='float:left') planted bombs
           .mob_item
-            img(src='your_assets_directory/icons/defused.png', style='float:left')
+            img(src='https://salies.github.io/csgo-profiler/assets/icons/defused.png', style='float:left')
             div(style='float:left;min-width: 87px;')!=defused
             br
             span(style='float:left') defused bombs
         .mob_group
           .mob_item
-            img(src='your_assets_directory/icons/hs.png', style='float:left')
+            img(src='https://salies.github.io/csgo-profiler/assets/icons/hs.png', style='float:left')
             div(style='float:left;min-width: 59px;')!=headshots
             br
             span(style='float:left') headshots
           .mob_item
-            img(src='your_assets_directory/icons/won.png', style='float:left')
+            img(src='https://salies.github.io/csgo-profiler/assets/icons/won.png', style='float:left')
             div(style='float:left;min-width: 91px;')!=pm
             br
             span(style='float:left') of matches won
