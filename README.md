@@ -1,6 +1,13 @@
 # csgo-profiler
-A NodeJS CS:GO data retriever / organizer. And that's just it.
+A NodeJS CS:GO data retriever / organizer.
 
-![](https://imgur.com/e1U76Vn.png)
+Thanks to the awesome [Windsdon](https://github.com/windsdon) for helping me with the first version of this project, done back in 2017!
 
-Thanks to the awesome [Windsdon](https://github.com/windsdon) for his help with this!
+**TODO:**
+
+* Create various stylesheets so the app doesn't load unnecessary styles (profile styles for an error page, for example)
+* Add name arrays (countries, guns, maps)
+* Add ISIS status back
+* (?) Add simplebar back
+* (?) Include timeout error
+* (?) Add meta tags

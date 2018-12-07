@@ -1,0 +1,39 @@
+    <footer>
+        Made with <a href="https://www.youtube.com/watch?v=VRyX-lEGbfQ" target="_blank">❤</a> by Salies.
+    </footer>
+</div>
+
+<script>
+document.querySelector('form').addEventListener('submit', e =>{
+    e.preventDefault();
+    window.location = parseInput(document.querySelector('input').value);
+})
+
+function parseInput(input){
+    if(input.substring(0, 4) === 'http'){
+        let parseURL = parseSteamURL(input);
+        if(parseURL === false){
+            return input;
+        }
+        else{
+            return parseURL;
+        }
+    }
+
+    return input;
+}
+
+function parseSteamURL(url){
+    if(url.indexOf('/id/')!==-1){
+        return url.split('/id/').pop().replace(/\//g, '');
+    }
+    else if(url.indexOf('/profiles/')!==-1){
+        return url.split('/profiles/').pop().replace(/\//g, '');
+    }
+    else{
+        return false;
+    }
+}
+</script>
+</body>
+</html>

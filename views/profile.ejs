@@ -1,0 +1,155 @@
+<%- include('header') -%>
+
+<div class="search s-profile">
+    <form><input type="text" placeholder="SteamID64/Custom URL/Full Profile URL"></form>
+</div>
+
+<div class="summaries">
+    <div>
+        <img src="<%= data[0].response.players[0].avatarfull %>">
+        <div>
+            <span>
+                <%= data[0].response.players[0].personaname %></span>
+            <br>
+            <% if(data[0].response.players[0].loccountrycode || data[0].response.players[0].realname){ %>
+            <aside>
+                <% if(data[0].response.players[0].loccountrycode){ %>
+                <img src="flags/<%= data[0].response.players[0].loccountrycode.toLowerCase() %>.svg">
+                <% } %>
+                <% if(data[0].response.players[0].realname){ %>
+                <%= data[0].response.players[0].realname %>
+                <% } %>
+            </aside>
+            <% } %>
+        </div>
+    </div>
+    <!--0 - Offline, 1 - Online, 2 - Busy, 3 - Away, 4 - Snooze, 5 - looking to trade, 6 - looking to play-->
+    <div><span>
+            <%= ["Offline", "Online", "Busy", "Away", "Snooze", "Looking to trade", "Looking to play"][data[0].response.players[0].personastate] %></span><br><a
+            href="<%= data[0].response.players[0].profileurl %>"><span>Steam Profile</span></a></div>
+</div>
+
+<div class="stats">
+    <table>
+        <tr>
+            <th rowspan="2"><span>
+                    <%= (data[2].playerstats.stats.find(obj =>{return obj.name === 'total_kills'}).value / data[2].playerstats.stats.find(obj =>{return obj.name === 'total_deaths'}).value).toFixed(2) %></span><br><span>K.D.
+                    Ratio</span>
+            </th>
+            <td class="icon">
+                <div style="background-position:-105px 0;"></div>
+            </td>
+            <td>
+                <span>
+                    <%= data[2].playerstats.stats.find(obj =>{return obj.name === 'total_kills'}).value %></span>
+                <br>
+                <span>kills</span>
+            </td>
+            <td class="icon">
+                <div style="background-position:-70px 35px;"></div>
+            </td>
+            <td>
+                <span>
+                    <%= (data[2].playerstats.stats.find(obj =>{return obj.name === 'total_time_played'}).value / 3600).toFixed(2) %></span>
+                <br>
+                <span>hours played</span>
+            </td>
+            <td class="icon">
+                <div style="background-position:-35px 35px;"></div>
+            </td>
+            <td>
+                <span>
+                    <%= data[2].playerstats.stats.find(obj =>{return obj.name === 'total_planted_bombs'}).value %></span>
+                <br>
+                <span>planted bombs</span>
+            </td>
+            <td class="icon">
+                <div style="background-position:-70px 0"></div>
+            </td>
+            <td>
+                <span>
+                    <%= data[2].playerstats.stats.find(obj =>{return obj.name === 'total_kills_headshot'}).value %></span>
+                <br>
+                <span>headshots</span>
+            </td>
+        </tr>
+        <tr>
+            <td class="icon">
+                <div style="background-position:0 0"></div>
+            </td>
+            <td>
+                <span>
+                    <%= data[2].playerstats.stats.find(obj =>{return obj.name === 'total_deaths'}).value %></span>
+                <br>
+                <span>deaths</span>
+            </td>
+            <td class="icon">
+                <div style="background-position:0 35px"></div>
+            </td>
+            <td>
+                <span>
+                    <%= data[2].playerstats.stats.find(obj =>{return obj.name === 'total_mvps'}).value %></span>
+                <br>
+                <span>MVPs</span>
+            </td>
+            <td class="icon">
+                <div style="background-position:-35px 0"></div>
+            </td>
+            <td>
+                <span>
+                    <%= data[2].playerstats.stats.find(obj =>{return obj.name === 'total_defused_bombs'}).value %></span>
+                <br>
+                <span>defused bombs</span>
+            </td>
+            <td class="icon">
+                <div style="background-position:-105px 35px"></div>
+            </td>
+            <td>
+                <span>
+                    <%= ((data[2].playerstats.stats.find(obj =>{return obj.name === 'total_matches_won'}).value * 100) / data[2].playerstats.stats.find(obj =>{return obj.name === 'total_matches_played'}).value).toFixed(2) %>%</span>
+                <br>
+                <span>of matches won</span>
+            </td>
+        </tr>
+    </table>
+</div>
+
+<% var unfiltered_data = [data[2].playerstats.stats.filter(obj =>{return obj.name.indexOf('total_kills_') >= 0}), data[2].playerstats.stats.filter(obj =>{return obj.name.indexOf('total_rounds_map_') >= 0})],
+    exceptions = ["total_kills_headshot", "total_kills_enemy_weapon", "total_kills_enemy_blinded", "total_kills_knife_fight", "total_kills_against_zoomed_sniper"];
+    for (i=unfiltered_data[0].length - 1; i>=0; i--){ //using for here because a map() would be inefficient in the "backwards iteration"
+        if(exceptions.indexOf(unfiltered_data[0][i].name) > -1){
+            unfiltered_data[0].splice(i, 1);
+        }
+    }
+    unfiltered_data.map(arr =>{ //map or for? why not map, almost never use these babies... - if you think it's worse performance-wise, feel free to make a pull request
+        arr.sort(function(a, b) {
+            return b.value - a.value;
+        });
+    });  
+%>
+<div class="extra">
+    <div>
+        <span>Most Lethal Guns</span>
+        <div>
+            <% for (i=0;i < unfiltered_data[0].length; i++){ %>
+                <%= i + 1 %>. <span class="i-name"><%= unfiltered_data[0][i].name.replace('total_kills_','') %></span> (<%= unfiltered_data[0][i].value %> kills)<br>
+            <% } %>
+        </div>
+    </div>
+    <div>
+        <span>Most Played Maps</span>
+        <div>
+            <% for (i=0;i < unfiltered_data[1].length; i++){  %>
+                <%= i + 1 %>. <span class="i-name"><%= unfiltered_data[1][i].name.replace('total_rounds_map_','') %></span> (<%= unfiltered_data[1][i].value %> rounds)<br>
+            <% } %>
+        </div>
+    </div>
+    <div>
+        <span>Ban Records</span>
+        VAC Record: <% if(data[1].players[0].VACBanned){ %> <span class="ban">Banned</span> <% } else{ %> <span class="clean">Clean</span> <% } %><br>
+        Community Ban Record: <% if(data[1].players[0].CommunityBanned){ %> <span class="ban">Banned</span> <% } else{ %> <span class="clean">Clean</span> <% } %><br>
+        Economy Status: <% if(data[1].players[0].EconomyBan === "none"){ %> <span class="clean">Clean</span> <% } else{ %> <span class="ban">Banned</span> <% } %>
+    </div>
+</div>
+
+<%- include('footer') -%>

@@ -1,14 +1,35 @@
 {
   "name": "csgo-profiler",
-  "version": "1.3.3.7",
+  "version": "1.0.0",
+  "description": "A NodeJS CS:GO data retriever / organizer.",
+  "main": "app.js",
+  "scripts": {
+    "test": "node app.js",
+    "start": "node app.js",
+    "postinstall": "cp -R node_modules/flag-icon-css/flags/4x3 assets/flags"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Salies/csgo-profiler.git"
+  },
+  "keywords": [
+    "profiler",
+    "package",
+    "cs",
+    "steam",
+    "cs:go"
+  ],
   "author": "Salies",
-  "repository": "salies/csgo-profiler",
-  "license": "MIT",
-  "description": "A simple and dynamic Steam/CS:GO data retriever.",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/Salies/csgo-profiler/issues"
+  },
+  "homepage": "https://github.com/Salies/csgo-profiler#readme",
   "dependencies": {
-    "async": "github:caolan/async",
-    "express": "github:expressjs/express",
-    "pug": "pugjs/pug",
-    "request": "request/request"
+    "ejs": "^2.6.1",
+    "express": "^4.16.4",
+    "flag-icon-css": "^3.2.1",
+    "request": "^2.88.0",
+    "request-promise": "^4.2.2"
   }
 }
